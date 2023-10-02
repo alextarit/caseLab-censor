@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function censor() {
+            const wordPairs = [];
+
+            // случая трех и более или отсутвия параметров не рассматривал, т.к. это не имеется в формулировке задания
+            return (arg1, arg2) => {
+                if (arg1 && arg2) {
+                    wordPairs.push([arg1, arg2]);
+                } else if (arg1) {
+                    let result = arg1;
+                    wordPairs.forEach(pair => {
+                        const [searchWord, replaceWord] = pair;
+                        result = result.replace(new RegExp(searchWord, 'g'), replaceWord);
+                    });
+                    return result;
+                }
+            };
+        }
+
+        // Пример использования
+
+        const changeScene = censor();
+
+        changeScene('PHP', 'JS');
+        changeScene('backend', 'frontend');
+
+        console.log(changeScene('PHP is the most popular programming language for backend web-development'));
+    </script>
+</body>
+
+</html>
